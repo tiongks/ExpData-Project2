@@ -5,14 +5,15 @@
 
 source("init-NEI-98-08-data.R")
 
-png("plot3.png")
+png("plot3.png", width = 640, height = 480)
 b_emissions <- NEI %>%
   filter(fips == "24510") %>%
   group_by(year, type) %>%
   summarise(Emissions=sum(Emissions))
 
-b_em_plot <- ggplot(data = b_emissions, aes(x = year, y = Emissions, color = type)) +
-  geom_line(size = 2) + xlab("Year") + ylab(expression('PM'[2.5]*' Emission')) +
-  ggtitle("Baltimore Emissions by Source Type")
+b_em_plot <- ggplot(data = b_emissions, aes(x = factor(year), y = Emissions, fill = type, colore = "black")) +
+  geom_bar(stat = "identity") + facet_grid(. ~ type) + 
+  xlab("Year") + ylab(expression('PM'[2.5]*' Emission')) +
+  ggtitle("Baltimore Emissions by Source Type") 
 print(b_em_plot)
 dev.off()

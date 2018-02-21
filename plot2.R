@@ -8,7 +8,7 @@ b_total_emissions <- NEI %>%
   group_by(year) %>%
   summarise(Emissions = sum(Emissions))
 
-png("plot2.png")
+png("plot2.png", width = 640, height = 480)
 with(b_total_emissions,
        barplot(height=Emissions/1000, names.arg = year, col = color_range, 
                xlab = "Year", ylab = expression('PM'[2.5]*' in Kilotons'),

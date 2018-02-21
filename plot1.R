@@ -4,7 +4,7 @@
 
 source("init-NEI-98-08-data.R")
 
-png('plot1.png')
+png('plot1.png', width = 640, height = 480)
 total_annual_emissions <- aggregate(Emissions ~ year, NEI, FUN = sum)
 color_range <- 2:(length(total_annual_emissions$year)+1)
 with(total_annual_emissions, 
